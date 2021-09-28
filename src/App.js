@@ -27,6 +27,14 @@ function App() {
       isCompleted: true,
       dateCopmleted: Date.now()
     },
+    
+    {
+      title: "Date is not displaying in the correct format.",
+      description: "We want date to display in mm/dd/yyyy format.",
+      dateCreated: Date.now(),
+      isCompleted: false,
+      dateCompleted: null
+    },
 
     {
       title: "Implement logic for LogIn/LogOut",
