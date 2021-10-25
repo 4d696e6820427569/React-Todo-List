@@ -1,28 +1,31 @@
 import React from "react";
 
-export default function Todo({newTodo}) {
+export default function Todo({newTodo, dispatch}) {
   if (newTodo.isCompleted) {
     return (
-      <div>
+      <form onSubmit={e => {e.preventDefault(); dispatch({type: 'DELETE_TODO', title: newTodo.title});} }>
         <h3>{newTodo.title}</h3>
         <p>{newTodo.description}</p>
         <p>Date created: {newTodo.dateCreated}</p>
-        <p>Completed:
-        <input type="checkbox" checked/>
-        </p>
-        <p>Date completed: {newTodo.dateCompleted}</p>
-      </div>
-    )    
+        <p>Completed: {newTodo.dateCompleted}</p>
+        <input type="checkbox" 
+        onChange={e => {e.preventDefault(); dispatch({type: 'TOGGLE_TODO',
+        title: newTodo.title})}}/>
+        <input type="submit" value="Delete" />
+      </form>
+    )
   } else {
     return (
-      <div>
+      <form onSubmit={e => {e.preventDefault(); dispatch({type: 'DELETE_TODO', title: newTodo.title});} }>
         <h3>{newTodo.title}</h3>
         <p>{newTodo.description}</p>
         <p>Date created: {newTodo.dateCreated}</p>
-        <p>Completed:
-        <input type="checkbox" value="unchecked"/>
-        </p>
-      </div>
+        <input type="checkbox" value="Unchecked" 
+        onChange={e => {e.preventDefault(); dispatch({type: 'TOGGLE_TODO',
+        title: newTodo.title})}}/>
+        <input type="submit" value="Delete" />
+      </form>
     )
   }
+
 }
