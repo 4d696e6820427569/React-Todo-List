@@ -1,7 +1,10 @@
-import React, {useState} from 'react'
+import React, {useContext} from 'react'
+
 import Login from "./Login";
 import Logout from "./Logout";
 import Registration from "./Registration";
+
+import {StateContext} from '../Contexts';
 
 export default function UserPanel() {
 

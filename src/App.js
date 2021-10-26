@@ -21,7 +21,7 @@ function App() {
 
   useEffect(() => {
     if (todos && todos.data) {
-      dispatch({type: 'FETCH_TODOS, todos: todos.data'});
+      dispatch({type: 'FETCH_TODOS', todos: todos.data.reverse()});
     }
   }, [todos]);
 
@@ -44,7 +44,6 @@ function App() {
     <div>
       <ThemeContext.Provider value={theme}>
         <StateContext.Provider value={{state: state, dispatch: dispatch}}>
-        <ChangeTheme theme={theme} setTheme={setTheme} />
         <UserPanel />
         <br/><br/><hr/><br/>
         {user && <CreateTodo />}

@@ -1,6 +1,6 @@
 import React, {useState} from "react";
-import {useContext} from 'react/cjs/react.development';
-
+import {useContext, useEffect} from 'react/cjs/react.development';
+import {useResource} from 'react-request-hook';
 import { StateContext} from '../Contexts';
 
 export default function Registration() {
@@ -13,8 +13,20 @@ export default function Registration() {
     passwordRepeat: ""
   });
 
+  const [user, register] = useResource((username, password) => ({
+    url: '/users',
+    method: 'post',
+    data: {username, password}
+  }));
+
+  useEffect(() => {
+    if (user && user.data) {
+      dispatch({type: 'REGISTER', username: user.data.username});
+    }
+  }, [user]);
+
   return (
-    <form onSubmit={e => {e.preventDefault(); dispatchUser({type:"REGISTER", username:formData.username})}}>
+    <form onSubmit={e => {e.preventDefault(); register(formData.username, formData.password)}}>
       <label htmlFor="registration-username">Username: </label>
       <input type="text" name="registration-username" id="registration-username" value={formData.username}
     onChange={e => setFormData({...formData, username: e.target.value})}/>

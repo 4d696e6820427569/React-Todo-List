@@ -2,7 +2,7 @@ import React, {useContext} from 'react'
 
 import {ThemeContext, StateContext} from "../Contexts";
 
-export default function Todo({title, description, isCompleted, dateCompleted, todoId}) {
+export default function Todo({title, user, description, isCompleted, dateCompleted, todoId}) {
 
   const {secondaryColor} = useContext(ThemeContext);
   const {dispatch} = useContext(StateContext);
@@ -39,6 +39,8 @@ return (
     <div>
       <h3 style={{ color:secondaryColor}}>{title}</h3>
       <div>{description}</div>
+      <br />
+      <i>Owner: <b>{user}</b></i>
       <br />
      <input type="checkbox" onClick={(e) => {dispatch({type: 'TOGGLE_TODO', isCompleted: !isCompleted, todoId: todoId})}} />
      <button onClick={(e) => {dispatch({type: 'DELETE_TODO', todoId: todoId})}}>Delete</button>
