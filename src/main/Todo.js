@@ -1,6 +1,12 @@
-import React from "react";
+import React, {useContext} from 'react'
 
-export default function Todo({newTodo, dispatch}) {
+import {ThemeContext, StateContext} from "../Contexts";
+
+export default function Todo({title, description, isCompleted, dateCompleted, todoId}) {
+
+  const {secondaryColor} = useContext(ThemeContext);
+  const {dispatch} = useContext(StateContext);
+ /*
   if (newTodo.isCompleted) {
     return (
       <form onSubmit={e => {e.preventDefault(); dispatch({type: 'DELETE_TODO', title: newTodo.title});} }>
@@ -10,7 +16,7 @@ export default function Todo({newTodo, dispatch}) {
         <p>Completed: {newTodo.dateCompleted}</p>
         <input type="checkbox" 
         onChange={e => {e.preventDefault(); dispatch({type: 'TOGGLE_TODO',
-        title: newTodo.title})}}/>
+        title: newTodo.title, todoId: todoId, isCompleted: !newTodo.isCompleted})}}/>
         <input type="submit" value="Delete" />
       </form>
     )
@@ -22,10 +28,24 @@ export default function Todo({newTodo, dispatch}) {
         <p>Date created: {newTodo.dateCreated}</p>
         <input type="checkbox" value="Unchecked" 
         onChange={e => {e.preventDefault(); dispatch({type: 'TOGGLE_TODO',
-        title: newTodo.title})}}/>
+        title: newTodo.title, todoId: todoId, isCompleted: !newTodo.isCompleted})}}/>
         <input type="submit" value="Delete" />
       </form>
     )
   }
-
 }
+*/
+return (
+    <div>
+      <h3 style={{ color:secondaryColor}}>{title}</h3>
+      <div>{description}</div>
+      <br />
+     <input type="checkbox" onClick={(e) => {dispatch({type: 'TOGGLE_TODO', isCompleted: !isCompleted, todoId: todoId})}} />
+     <button onClick={(e) => {dispatch({type: 'DELETE_TODO', todoId: todoId})}}>Delete</button>
+     {isCompleted && <><br/>Completed on: {new Date(dateCompleted).toLocaleDateString('en-us')} <br/></>}
+    <hr/>
+    </div>
+)
+}
+    
+ 

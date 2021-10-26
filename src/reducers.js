@@ -21,26 +21,18 @@ function todoReducer(state, action) {
       }
       return [ newTodo, ...state ]
     case 'TOGGLE_TODO':
-      return state.map(todo => {
-        if (todo.title !== action.title) {
-          return todo;
+      return state.map( (p, i) => {
+        if (i === action.postId) {
+          p.isCompleted = action.isCompleted;
+          p.dateCompleted = Date.now();
         }
-
-        if (todo.isCompleted) 
-          return {
-            ...todo,
-            dateCompleted: Date(),
-            isCompleted: !todo.isCompleted
-          };
-        else
-          return {
-            ...todo,
-            isCompleted: !todo.isCompleted
-          }
+        return p;
       });
       
     case 'DELETE_TODO':
-      return state.filter(todo => todo.title !== action.title)
+      return state.filter((p, i) => i !== action.todoId);
+    case 'FETCH_TODOS':
+      return action.todos;
     default:
       return state;
   }
