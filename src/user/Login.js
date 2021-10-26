@@ -25,7 +25,7 @@ export default function Login() {
   const [password, setPassword] = useState('');
 
   const [user, login] = useResource((username, password) => ({
-    url:`/login/${encodeURI(username)}/${encodeURI(password)}}`,
+    url:`/login/${encodeURI(username)}/${encodeURI(password)}`,
     method: 'get'
   }));
 
@@ -48,7 +48,7 @@ export default function Login() {
     <label htmlFor="login-username">Username: </label>
     <input type="text" name="login-username" id="login-username" value={username} onChange={handleUsername}/>
     <label htmlFor="login-password">Password: </label>
-    <input type="password" name="login-password" id="login-password" onChange={handlePassword} />
+    <input type="password" name="login-password" id="login-password" value={password} onChange={handlePassword} />
     <input type="submit" value="Login"/>
     {loginFailed && <span style={{color: 'red'}}>Invalid username or password</span>}
     </form>

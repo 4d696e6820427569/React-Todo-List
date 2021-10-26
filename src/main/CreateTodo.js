@@ -29,7 +29,7 @@ export default function CreateTodo() {
   function handleDescription(evt) { setDescription(evt.target.value); }
 
   return (
-    <form onSubmit={ e => {e.preventDefault(); dispatch({type: "CREATE_TODO", title, description, user});}}>
+    <form onSubmit={ e => {e.preventDefault(); handleCreate();}}>
       <h3>Create new todo</h3>
       <div>Ownder: <b>{user}</b></div>
       <div>
