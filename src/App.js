@@ -1,5 +1,7 @@
 import React, {useState, useReducer, useEffect} from 'react';
 import {useResource} from 'react-request-hook';
+import {mount, route} from 'navi';
+import {Router, View} from 'react-navi'
 
 import CreateTodo from "./main/CreateTodo";
 import TodoList from "./main/TodoList";
@@ -27,6 +29,10 @@ function App() {
 
   const {user} = state;
 
+  const routes = mount({
+    '/todos/create':route({view: <CreateTodo />}),
+  });
+
   useEffect(() => {
     if (user) {
       document.title = `${user}'s Todo List'`
@@ -44,11 +50,13 @@ function App() {
     <div>
       <ThemeContext.Provider value={theme}>
         <StateContext.Provider value={{state: state, dispatch: dispatch}}>
+          <Router routes={routes}>
         <UserPanel />
         <br/><br/><hr/><br/>
         {user && <CreateTodo />}
         <br/><br/><hr/><br/>
         <TodoList />
+          </Router>
         </StateContext.Provider>
       </ThemeContext.Provider>
     </div>

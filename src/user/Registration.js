@@ -19,7 +19,7 @@ export default function Registration() {
     data: {username, password}
   }));
 
-  useEffect(() => {
+  useEffect((user, dispatch) => {
     if (user && user.data) {
       dispatch({type: 'REGISTER', username: user.data.username});
     }

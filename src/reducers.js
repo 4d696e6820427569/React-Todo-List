@@ -14,16 +14,18 @@ function todoReducer(state, action) {
   switch (action.type) {
     case 'CREATE_TODO':
       const newTodo = {
+        todoId: action.todoId,
         title: action.title,
         user: action.user,
         description: action.description,
         dateCreated: Date(),
-        isCompleted: false
+        isCompleted: false,
+        datedCompleted: undefined
       }
       return [ newTodo, ...state ]
     case 'TOGGLE_TODO':
-      return state.map( (p, i) => {
-        if (i === action.postId) {
+      return state.map( (p) => {
+        if (p.todoId === action.todoId) {
           p.isCompleted = action.isCompleted;
           p.dateCompleted = Date.now();
         }
@@ -31,7 +33,7 @@ function todoReducer(state, action) {
       });
       
     case 'DELETE_TODO':
-      return state.filter((p, i) => i !== action.todoId);
+      return state.filter((p) => p.todoId !== action.todoId);
     case 'FETCH_TODOS':
       return action.todos;
     default:
