@@ -1,5 +1,6 @@
 import React, {useContext, useEffect} from 'react'
 
+import {Link} from 'react-navi'
 import { Button } from 'react-boostrap'
 
 import {ThemeContext, StateContext} from "../Contexts";
@@ -54,4 +55,5 @@ return (
     </div>
 )
 }
-   
+  
+export default React.memo(Todo);

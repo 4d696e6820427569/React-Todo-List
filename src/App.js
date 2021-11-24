@@ -56,11 +56,11 @@ function App() {
       <ThemeContext.Provider value={theme}>
         <StateContext.Provider value={{state: state, dispatch: dispatch}}>
           <Router routes={routes}>
-        <UserPanel />
-        <br/><br/><hr/><br/>
-        {user && <CreateTodo />}
-        <br/><br/><hr/><br/>
-        <TodoList />
+            <Container>
+              <HeaderBar setTheme={setTheme}/>
+              <hr/>
+              <View/>
+            </Container>
           </Router>
         </StateContext.Provider>
       </ThemeContext.Provider>

@@ -1,8 +1,7 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import Todo from "./Todo"
 
 import {StateContext, ThemeContext} from '../Contexts'
-import {useContext} from 'react/cjs/react.development'
 
 export default function TodoList() {
   const {state} = useContext(StateContext);
