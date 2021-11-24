@@ -3,21 +3,26 @@ import {useResource} from 'react-request-hook';
 import {mount, route} from 'navi';
 import {Router, View} from 'react-navi'
 
+import { Container } from 'react-bootstrap';
+
+import appReducer from './reducers';
+
+import {ThemeContext, StateContext} from './Contexts';
+
 import CreateTodo from "./main/CreateTodo";
 import TodoList from "./main/TodoList";
 import UserPanel from "./user/UserPanel";
-import appReducer from './reducers';
-
-import {ThemeContext, StateContext} from './Contexts'
 
 function App() {
+
+  const [ state, dispatch ] = useReducer(appReducer, { user: {}, todos: [] });
 
   const [ todos, getTodos ] = useResource(() => ({
     url: '/todos',
     method: 'get'
   }));
 
-  const [ state, dispatch ] = useReducer(appReducer, { user: '', todos: [] });
+  
 
   useEffect(getTodos, []);
 
