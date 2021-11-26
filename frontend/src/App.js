@@ -24,8 +24,6 @@ function App() {
     method: 'get'
   }));
 
-  
-
   useEffect(getTodos, []);
 
   useEffect(() => {
