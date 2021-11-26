@@ -1,5 +1,4 @@
-import React, {useState, useReducer, useEffect} from 'react';
-import {useResource} from 'react-request-hook';
+import React, {useState, useReducer } from 'react';
 import {mount, route} from 'navi';
 import {Router, View} from 'react-navi'
 
@@ -11,7 +10,6 @@ import {ThemeContext, StateContext} from './Contexts';
 
 import CreateTodo from "./main/CreateTodo";
 import TodoList from "./main/TodoList";
-import UserPanel from "./user/UserPanel";
 import HeaderBar from './pages/HeaderBar'
 import HomePage from './pages/HomePage'
 
@@ -19,38 +17,21 @@ function App() {
 
   const [ state, dispatch ] = useReducer(appReducer, { user: {}, todos: [] });
 
-  const [ todos, getTodos ] = useResource(() => ({
-    url: '/todos',
-    method: 'get'
-  }));
-
-  useEffect(getTodos, []);
-
-  useEffect(() => {
-    if (todos && todos.data) {
-      dispatch({type: 'FETCH_TODOS', todos: todos.data.reverse()});
-    }
-  }, [todos]);
-
   const {user} = state;
-
-  const routes = mount({
-    '/todos/create':route({view: <CreateTodo />}),
-  });
-
-  useEffect(() => {
-    if (user) {
-      document.title = `${user}'s Todo List'`
-    } else {
-      document.title = 'Todo List'
-    }
-  }, [user])
 
   const [theme, setTheme] = useState({
     primaryColor: 'deepskyblue',
     secondaryColor: 'coral'
   })
 
+  const routes = mount({
+    '/': route({view :<HomePage />}),
+    '/todos/create':route({view: <CreateTodo />}),
+    '/todo/:id': route(req => {
+      return { view: <TodoList id={req.params.id} /> }
+    }),
+  });
+  
   return (
     <div>
       <ThemeContext.Provider value={theme}>
