@@ -1,8 +1,8 @@
 import React, {useState, useEffect, useContext} from "react";
-import {useContext, useEffect} from 'react/cjs/react.development';
+
 import {useResource} from 'react-request-hook';
 import { StateContext} from '../Contexts';
-import { Form, Modal } from "react-bootstrap";
+import { Form, Modal, Button } from "react-bootstrap";
 
 export default function Registration({show, handleClose}) {
 

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 
-import CreatePost from '../CreatePost'
-import UserBar from '../user/UserBar'
+import CreatePost from '../main/CreateTodo'
+import UserBar from '../user/UserPanel'
 import Header from '../Header'
 import ChangeTheme from '../ChangeTheme'
 

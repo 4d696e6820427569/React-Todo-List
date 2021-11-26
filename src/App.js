@@ -12,6 +12,8 @@ import {ThemeContext, StateContext} from './Contexts';
 import CreateTodo from "./main/CreateTodo";
 import TodoList from "./main/TodoList";
 import UserPanel from "./user/UserPanel";
+import HeaderBar from './pages/HeaderBar'
+import HomePage from './pages/HomePage'
 
 function App() {
 

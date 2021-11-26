@@ -1,12 +1,12 @@
 import React, {useContext, useEffect} from 'react'
 
 import {Link} from 'react-navi'
-import { Button } from 'react-boostrap'
+import { Button } from 'react-bootstrap'
 
 import {ThemeContext, StateContext} from "../Contexts";
 import {useResource} from 'react-request-hook';
 
-export default function Todo({title, user, description, isCompleted, dateCompleted, todoId}) {
+function Todo({title, user, description, isCompleted, dateCompleted, todoId}) {
 
   const {secondaryColor} = useContext(ThemeContext);
   const {dispatch} = useContext(StateContext);

@@ -1,16 +1,15 @@
-import React, {useState, useContext} from "react";
+import React, {useState, useContext, useEffect} from "react";
 import { StateContext } from "../Contexts";
 import {useResource} from 'react-request-hook';
 
-/**
- * Need a dateCreated.
- * Need a boolean to indicate if it's completed.
- * Need a dateCompleted.
- */
+import {useNavigation} from 'react-navi'
+
 export default function CreateTodo() {
 
   const [ title, setTitle ] = useState('');
   const [ description, setDescription ] = useState('');
+
+  const navigation = useNavigation();
 
   const {state, dispatch} = useContext(StateContext);
   const {user} = state;
@@ -18,20 +17,27 @@ export default function CreateTodo() {
   const [todo, createTodo] = useResource(({title, description, user}) => ({
     url: '/todos',
     method: 'post',
+    headers: {"Authorization": `${state.user.access_token}`},
     data: {title, description, user}
   }));
 
   function handleCreate() {
-    createTodo({title, description, user});
-    dispatch({type: 'CREATE_TODO', title, description, user})
+    createTodo({title, description, user: user.username});
   }
   function handleTitle(evt) { setTitle(evt.target.value); }
   function handleDescription(evt) { setDescription(evt.target.value); }
 
+  useEffect(() => {
+    if (todo && todo.data) {
+      dispatch({type: 'CREATE_TODO', title: todo.data.title, description: todo.data.description, id: todo.data.id, user: user.username})
+      navigation.navigate(`/todo/${todo.data.id}`)
+    }
+  }, [todo])
+
   return (
     <form onSubmit={ e => {e.preventDefault(); handleCreate();}}>
       <h3>Create new todo</h3>
-      <div>Ownder: <b>{user}</b></div>
+      <div>Ownder: <b>{user.username}</b></div>
       <div>
         <label htmlFor="create-title">Title:</label>
         <input type="text" name="create-title" id="create-title" value={title} onChange={handleTitle}/>
