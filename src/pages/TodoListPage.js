@@ -5,16 +5,16 @@ import {StateContext} from '../Contexts'
 import {Link} from 'react-navi'
 import Todo from '../main/Todo'
 
-export default function TodoListPage({id}) {
+export default function TodoListPage({todoId}) {
     const {state} = useContext(StateContext);
 
     const [todo, getTodo] = useResource(() => ({
-        url: `/todo/${id}`,
+        url: `/todo/${todoId}`,
         headers: {"Authorization": `${state.user.access_token}`},
         method: 'get'
     }));
 
-    useEffect(getTodo, [id])
+    useEffect(getTodo, [todoId])
 
     return (
         <div>
