@@ -26,7 +26,7 @@ function App() {
 
   const routes = mount({
     '/': route({view :<HomePage />}),
-    '/todos/create':route({view: <CreateTodo />}),
+    '/todo/create':route({view: <CreateTodo />}),
     '/todo/:id': route(req => {
       return { view: <TodoListPage id={req.params.id} /> }
     }),

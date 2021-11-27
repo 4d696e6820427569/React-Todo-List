@@ -17,6 +17,7 @@ export default function HomePage() {
 
     useEffect(() => {
         if (todos && todos.isLoading === false && todos.data) {
+            console.log(todos.data);
             dispatch({type: 'FETCH_TODOS', todos: todos.data.todos})
         }
     }, [todos])

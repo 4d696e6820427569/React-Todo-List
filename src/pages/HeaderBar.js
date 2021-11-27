@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 
 import CreatePost from '../main/CreateTodo'
-import UserBar from '../user/UserPanel'
+import UserPanel from '../user/UserPanel'
 import Header from '../Header'
 import ChangeTheme from '../ChangeTheme'
 
@@ -26,13 +26,10 @@ export default function HeaderBar ({setTheme }) {
               {user.username && <Nav.Link><Link href="/todos/create">Create New Todo</Link></Nav.Link>}
             </Nav>
             <React.Suspense fallback={"Loading..."}>
-              <UserBar />
+              <UserPanel />
             </React.Suspense>
           </Navbar.Collapse>
         </Container>
         </Navbar>
-
-
-
     )
 }
