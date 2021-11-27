@@ -1,7 +1,7 @@
 import React, {useContext, useEffect} from 'react'
 
 import {Link} from 'react-navi'
-import { Button } from 'react-bootstrap'
+import { Card, Button } from 'react-bootstrap'
 
 import {ThemeContext, StateContext} from "../Contexts";
 import {useResource} from 'react-request-hook';
