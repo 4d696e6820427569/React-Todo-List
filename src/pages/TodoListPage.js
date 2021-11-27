@@ -18,7 +18,7 @@ export default function TodoListPage({id}) {
 
     return (
         <div>
-            {(todo && todo.data) ? <Post {...todo.data}/> : 'Loading...'}
+            {(todo && todo.data) ? <Todo {...todo.data}/> : 'Loading...'}
             <div><Link href="/">Back</Link></div>
         </div>
     )

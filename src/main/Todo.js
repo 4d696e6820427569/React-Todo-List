@@ -51,7 +51,7 @@ return (
         {processedDescription}
     </Card.Text>
     
-     <input type="checkbox" checked={complete} onChange={e => {toggleTodo(postId, e.target.checked)}} />
+     <input type="checkbox" checked={isCompleted} onChange={e => {toggleComplete(todoId, e.target.checked)}} />
      <Button variant="link" onClick={(e) => {deleteTodo(todoId)}}>Delete</Button>
     {isCompleted && <><br/>Completed on: {new Date(dateCompleted).toLocaleDateString('en-us')} <br/></>}
   
