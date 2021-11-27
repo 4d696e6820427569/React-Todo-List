@@ -12,7 +12,7 @@ function Todo({title, user, description, isCompleted, dateCompleted, todoId}) {
   const {dispatch} = useContext(StateContext);
   
   const [toggledTodo, toggleComplete] = useResource((todoId, isCompleted) => ({
-    url: `/todos/${todoId}`,
+    url: `/todo/${todoId}`,
     method: 'patch',
     data: {
       isCompleted: isCompleted,
@@ -21,7 +21,7 @@ function Todo({title, user, description, isCompleted, dateCompleted, todoId}) {
   }));
 
   const [deletedTodo, deleteTodo] = useResource((todoId) => ({
-    url: `/todos/${todoId}`,
+    url: `/todo/${todoId}`,
     method: "delete"
   }));
 
@@ -42,7 +42,7 @@ function Todo({title, user, description, isCompleted, dateCompleted, todoId}) {
 return (
   <Card>
   <Card.Body>
-    <Card.Title><Link style={{ color: secondaryColor }} href={`/todos/${todoId}`}>{title}</Link>
+    <Card.Title><Link style={{ color: secondaryColor }} href={`/todo/${todoId}`}>{title}</Link>
     </Card.Title>
     <Card.Subtitle>
     <i>By <b>{user}</b></i>
