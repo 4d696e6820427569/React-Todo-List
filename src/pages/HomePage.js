@@ -20,10 +20,10 @@ export default function HomePage() {
             dispatch({type: 'FETCH_TODOS', todos: todos.data.todos})
         }
     }, [todos])
-    const { data, isLoading} = todos;
+    const { data, isLoading } = todos;
     return (
         <>
-            {isLoading && 'Posts loading...'} <TodoList/>
+            {isLoading && 'Todos loading...'} <TodoList/>
         </>
     )
 }

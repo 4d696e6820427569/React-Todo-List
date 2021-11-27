@@ -28,7 +28,7 @@ function App() {
     '/': route({view :<HomePage />}),
     '/todos/create':route({view: <CreateTodo />}),
     '/todo/:id': route(req => {
-      return { view: <TodoList id={req.params.id} /> }
+      return { view: <TodoListPage id={req.params.id} /> }
     }),
   });
   
