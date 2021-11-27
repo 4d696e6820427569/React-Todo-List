@@ -9,7 +9,7 @@ import appReducer from './reducers';
 import {ThemeContext, StateContext} from './Contexts';
 
 import CreateTodo from "./main/CreateTodo";
-import TodoList from "./main/TodoList";
+import TodoListPage from "./pages/TodoListPage";
 import HeaderBar from './pages/HeaderBar'
 import HomePage from './pages/HomePage'
 
