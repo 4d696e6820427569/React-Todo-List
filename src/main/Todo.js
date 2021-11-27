@@ -37,22 +37,26 @@ function Todo({title, user, description, isCompleted, dateCompleted, todoId}) {
     }
   }, [toggledTodo])
 
-  /*
-  useEffect(() => {
-  }, [todo]);
-  */
+  let processedDescription = description;
+
 return (
-    <div>
-      <h3 style={{ color:secondaryColor}}>{title}</h3>
-      <div>{description}</div>
-      <br />
-      <i>Owner: <b>{user}</b></i>
-      <br />
-     <input type="checkbox" checked={isCompleted} onChange={e => {toggledTodo(todoId, e.target.checked)}} />
+  <Card>
+  <Card.Body>
+    <Card.Title><Link style={{ color: secondaryColor }} href={`/todos/${todoId}`}>{title}</Link>
+    </Card.Title>
+    <Card.Subtitle>
+    <i>By <b>{user}</b></i>
+    </Card.Subtitle>
+    <Card.Text>
+        {processedDescription}
+    </Card.Text>
+    
+     <input type="checkbox" checked={complete} onChange={e => {toggleTodo(postId, e.target.checked)}} />
      <Button variant="link" onClick={(e) => {deleteTodo(todoId)}}>Delete</Button>
-     {isCompleted && <><br/>Completed on: {new Date(dateCompleted).toLocaleDateString('en-us')} <br/></>}
-    <hr/>
-    </div>
+    {isCompleted && <><br/>Completed on: {new Date(dateCompleted).toLocaleDateString('en-us')} <br/></>}
+  
+  </Card.Body>
+  </Card>
 )
 }
   
