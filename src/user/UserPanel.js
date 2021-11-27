@@ -19,6 +19,9 @@ export default function UserPanel() {
   } else {
     return (
         <div className="justify-content-end">
+          <Button variant="link" onClick={(e) => setShowLogin(true)}>
+            Login
+          </Button>
           <Login show={showLogin} handleClose={()=> setShowLogin(false)} />
           <Button variant="link" onClick={(e) => setShowRegistration(true)}>
             Register
