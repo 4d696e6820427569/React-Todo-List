@@ -22,7 +22,7 @@ function todoReducer(state, action) {
       const newTodo = {
         todoId: action.todoId,
         title: action.title,
-        user: action.user,
+        author: action.author,
         description: action.description,
         dateCreated: Date(),
         isCompleted: false,

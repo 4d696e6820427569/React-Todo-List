@@ -6,7 +6,7 @@ import { Card, Button } from 'react-bootstrap'
 import {ThemeContext, StateContext} from "../Contexts";
 import {useResource} from 'react-request-hook';
 
-function Todo({title, user, description, isCompleted, dateCompleted, todoId}) {
+function Todo({title, author, description, isCompleted, dateCompleted, todoId}) {
 
   const {secondaryColor} = useContext(ThemeContext);
   const {dispatch} = useContext(StateContext);
@@ -45,7 +45,7 @@ return (
     <Card.Title><Link style={{ color: secondaryColor }} href={`/todo/${todoId}`}>{title}</Link>
     </Card.Title>
     <Card.Subtitle>
-    <i>By <b>{user}</b></i>
+    <i>By <b>{author}</b></i>
     </Card.Subtitle>
     <Card.Text>
         {processedDescription}
